@@ -17,11 +17,13 @@ export const Spotify = {
             
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/');
+            return accessToken;
         } else {
             const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`
-            window.location = accessURL
+            window.location = accessURL;
         }
     },
+
     search(term) {
         const accessToken = Spotify.getAccessToken()
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
@@ -43,6 +45,7 @@ export const Spotify = {
             }))
         })
     },
+    
     savePlayList(name, trackURIs) {
         if(!name || !trackURIs.length) {
             return;

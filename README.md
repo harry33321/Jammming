@@ -1,3 +1,10 @@
+# Jammming
+
+>**Jammming**, is a project from "[**codecademy**](https://www.codecademy.com/learn)".<br />
+## Live Site
+To view the site by browser, [click here](https://harry33321.github.io/Jammming/)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
