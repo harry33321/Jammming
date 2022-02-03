@@ -2,28 +2,29 @@ import { useState } from 'react';
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
+import { Spotify } from '../../util/Spotify'
 import './App.css';
 
 function App() {
 
   const [searchResults, setSearchResults] = useState([
-    {
-      name: "name",
-      artist: "artist",
-      album: "album",
-      id: "id"
-    }
+    // {
+    //   name: "name",
+    //   artist: "artist",
+    //   album: "album",
+    //   id: "id"
+    // }
   ])
 
   const [playlistName, setPlaylistName] = useState("")
 
   const [playlistTracks, setPlaylistTracks] = useState([
-    {
-      name: "name2",
-      artist: "artist2",
-      album: "album2",
-      id: "id2"
-    }
+    // {
+    //   name: "name2",
+    //   artist: "artist2",
+    //   album: "album2",
+    //   id: "id2"
+    // }
   ])
 
   const addTrack = track => {
@@ -43,11 +44,17 @@ function App() {
   }
 
   const savePlaylist = () => {
-
+    const trackURIs = playlistTracks.map(track => track.uri)
+    Spotify.savePlayList(playlistName, trackURIs).then(() => {
+      setPlaylistName("New Playlist")
+      setPlaylistTracks([])
+    })
   }
 
   const search = term => {
-    console.log(term)
+    Spotify.search(term).then(searchResults => {
+      setSearchResults(searchResults)
+    })
   }
 
   return (
